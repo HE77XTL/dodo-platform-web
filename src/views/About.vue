@@ -2,12 +2,13 @@
     <div>
         about
         <button @click="getUser" class="ui-button">getUser</button>
+        <button @click="redisTest" class="ui-button">redisTest</button>
     </div>
 </template>
 
 <script lang="ts">
-    import axios from 'axios'
     import {defineComponent} from 'vue'
+    import request from '../request/request'
 
     export default defineComponent({
         name: 'HelloWorld',
@@ -16,15 +17,10 @@
         },
         methods: {
             getUser() {
-                const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlZHMiLCJpYXQiOjE2MTUyNTQxOTV9.ToL7ToU2K361VDfp7mESNHXd8Eh2DgKC2E7Lcag0R2k'
-
-                axios.defaults.headers.Authorization = `Bearer ${token}`;
-                axios({
-                    method: 'get',
-                    url: 'http://127.0.0.1:7002/getUser'
-                }).then(res => {
-                    console.log(res)
-                })
+                request.get('/getUser')
+            },
+            redisTest() {
+                request.get('/redisTest')
             }
         }
     })

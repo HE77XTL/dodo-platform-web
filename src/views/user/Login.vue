@@ -19,6 +19,7 @@
 <script lang="ts">
     import {defineComponent} from 'vue'
     import axios from 'axios'
+    import request from '../../request/request'
 
     export default defineComponent({
         name: 'Login',
@@ -30,17 +31,19 @@
         },
         methods: {
             onLogin() {
-                axios({
-                    method: 'get',
-                    url: 'http://127.0.0.1:7002/login'
+                request.post('/login', {
+                    userName: this.userName,
+                    password: this.password
                 }).then(res => {
-                    console.log('token')
-                    console.log(res.data.data)
-                    // axios.defaults.headers.Authorization = res.data.data;
-                    // axios.defaults.headers.Authorization = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImhlZHMiLCJpYXQiOjE2MTUyNTQxOTV9.ToL7ToU2K361VDfp7mESNHXd8Eh2DgKC2E7Lcag0R2k';
+                    if (res.data.code === '0000') {
+                        // localStorage.setItem('Authorization', res.data.data);
+                        // axios.defaults.headers.Authorization = res.data.data
+                    }
                 })
             }
         }
     })
 </script>
+
+
 

@@ -1,7 +1,12 @@
 <template>
     <div>
-        home
-        <router-link to="/login">login</router-link>
+        <div>home</div>
+        <div>
+            <router-link to="/login">login</router-link>
+        </div>
+        <div>
+            <router-link to="/register">register</router-link>
+        </div>
     </div>
 </template>
 
